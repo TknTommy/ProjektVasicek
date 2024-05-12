@@ -6,12 +6,12 @@
 
 
 
-
+## Front-end
 #### WebUI na PC
 
 ![Frontend_projekt](https://github.com/TknTommy/ProjektVasicek/assets/117047367/05e20204-2b3a-42bd-8eae-a51199f946b8)
-
-#### Kód pro pro čtení a ověření platnosti
+## Kód
+Kód pro pro čtení a ověření platnosti
 ```
 #include <Arduino.h>
 #include <WiFi.h>
@@ -75,5 +75,5 @@ bool checkRFID(char* id) {
 }
 ```
 
-Školní projekt
+## Licence
 Projekt "Památky.cz" vytvořen, Tomáš Gajda & Jakub Procházka
