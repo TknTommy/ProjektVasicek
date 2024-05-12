@@ -1,1 +1,86 @@
+#include <Arduino.h>
+#include <WiFi.h>
+#include <FirebaseESP32.h>
+
+#define FIREBASE_HOST "https://rfid-97035-default-rtdb.europe-west1.firebasedatabase.app/"
+#define FIREBASE_AUTH "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCtWwHlUhPVevuh\
+eAidmzwqxFS+X8xsLX6rE8hsA/XDK/wAMmbLdkKz8v3GmN7JpMyqCVH0qqC1i7Nv\
+BCjdp9/d39YDotvBP94g0KFs7ul/NnbIhO9kF//EyhrRDJGFmvGDypsqXcKHqlh7\
+UApyB+QNgLVlxgr+XP7hYTd2KYZcITJmO+niDq1YaDIOWlv0dnf8x5xUOycaHiy+\
+mi6wlko62NOHsINzA3v2B3D6G5Fg4FccCox1vtbe2vd9L5vpNb21KkMFfxWUKzpD\
+HXgMImqnNJVxkb4oNgnvSjeov2DjU+z6eWZjRpZ23p7DVrYeluFajYDBFOMKdimh\
+eDIWkvV1AgMBAAECggEAQj1uIgQU1BPkJrTJBgAVI3pVr1DHueZAanpqsOtqcyNR\
+bXnU0ZXkswH8enBbYM157tcU29p/Ah/ZdmgufVPyNMOc8VK/ib4v0HYn2IoJ6rQS\
++1fgaWzKLJXVXV/iEx07f9JhK/Ubqd8rZCMXeq8NMyOlLLhZ5wv90HznRl1jm7vq\
+I9Ha3KeQ/f9z6Pc4KUpWvN5a79cORiTEo9qb+h3/o3ZXGAxkAPITRLqgBphdjmOG\
+bRFxldE6gFixFOf2SyV0lZL84Lbz/lfcqE80NCtTnFgppifbTmG7ixdaoXQcJqK0\
+Atj1KFgsyQHquNbofAB09YXqznqavEsCfRuQZMs4GQKBgQDjORaoWe+5iAMyo7Xs\
+bZvGVR7shII8kOWqf6hvvugtugTGokBaLeGnjxWvHrQf0HU3wXplmXoipLToYyXj\
+PIVf1CLcD0gL0S6xWlEmgdai/5pfTfv0Uwad0sDWhEpj7n2LPUdlLOaCuFVGouVZ\
+Sbvz68qDFe9FKk2GOSSnRqkGTwKBgQDDT3QRJvA3ncQ8CJ1EpaPrdn8U9D0DrAIy\
+dejvfrwjud81QIIh5V0pKVz3bsB7nZ2DPsIifhua4P5RiKNmKj+M5LvkS/IBoala\
+Bpa+49UTH3pBR1RD/jq//daqt9JY1N9E39c/FoxZ0eQv4cfaya6nHsovNE1pdtiG\
+Nb5GDL5a+wKBgBLCrOc7fbqAy1rL/4JEzn7CmmoGysX7ZKr+HUcUqRDVcf2AefW4\
+IhB2lOC/lTmnOXZgCB4JXPctSC6DuSYY4h42YqZusJEhNUy5W0flonYUyoch5jKX\
+BE3Vj8xmYcn8b+smJRXqbiHO3GOXoX4Mw3LxPegy0G2Sf5Icd7VD9UKrAoGBAKpR\
+nFbkzPDDLQBpRrQ5elP41uOwBZExLA1TE5nevDSvf33Rzmm+udoOTxsbQtHJ5jUw\
+wl0P+gS7FiyF6nBKgXbddRimPdm8X5G5UzYOOp7dgWBx0oMkrZkFxHDFsrJymG1Y\
+gj1q7WPajJJQ41bhL+RfDlPR2XwR/sozDcXKkSmHAoGBAIKAXLL8okUC+rdxxX85\
+lAx62pdRkP1kwgYtRF8/JQy2zm50dbQ/P4zCHUAkpjoQ6mY+djWPCBfMPx70jviw\
+UYgv5p6GRrAT25hmXNqXyTgVVJdE+Nneg4iePmQsWhsUeiChe7rAL1Jxz3fAZ3fL\
+KPvtjLDyBV6f5CP/4TDljLTL"
+
+
+
+char ssid[] = "TomasG";
+char pass[] = "12345678";
+
+char prijateID[14];
+bool shoda = false;
+
+void setup() {
+  Serial.begin(9600);
+  WiFi.begin(ssid, pass);
+  Serial.print("Connecting to WiFi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Connected to WiFi: ");
+  Serial.println(WiFi.localIP());
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    if (Serial.read() == '\n') {
+      Serial.println("Scanning RFID...");
+      for (int i = 0; i < 14; i++) {
+        while (!Serial.available()) {}
+        prijateID[i] = Serial.read();
+        Serial.print(prijateID[i]);
+      }
+      Serial.println();
+
+      shoda = checkRFID(prijateID);
+      if (shoda) {
+        Serial.println("RFID identifikátor byl nalezen v databázi.");
+      } else {
+        Serial.println("RFID identifikátor nebyl nalezen v databázi.");
+      }
+    }
+  }
+}
+
+bool checkRFID(char* id) {
+  String path = "/rfid/";
+  path += id;
+
+  String data = Firebase.getString(path);
+  if (data != "null") {
+    return true;
+  }
+  return false;
+}
 
