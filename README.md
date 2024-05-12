@@ -8,8 +8,7 @@
         <img src="https://img.shields.io/github/forks/TknTommy/ProjektVasicek" /></a>
 	<a alt="Issues">
         <img src="https://img.shields.io/github/issues/TknTommy/ProjektVasicek" /></a>
-	<a alt="License">
-        <img src="https://img.shields.io/github/license/TknTommy/ProjektVasicek" /></a>
+	<img alt="GitHub License" src="https://img.shields.io/github/license/TknTommy/ProjektVasicek">
 	<a alt="Release">
         <img src="https://img.shields.io/github/release/TknTommy/ProjektVasicek" /></a>
 	<a alt="Code_coverage>
