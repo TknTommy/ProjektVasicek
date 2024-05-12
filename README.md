@@ -14,7 +14,8 @@
 	<a alt="Code_coverage>
         <img src="https://img.shields.io/codecov/c/github/TknTommy/ProjektVasicek" /></a>
 </p>
-
+## Myšlenková mapa pro tento projekt 
+https://coggle.it/diagram/ZkEoO64Gr7SFqhFV/t/-
 
 ## Hardware
 #### ESP32
