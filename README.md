@@ -1,7 +1,10 @@
+#
 
 
-
-
+## Hardware
+#### ESP32
+Centrlní prvek celého projektu
+#### RFID čtečka - EM4100 RDM6300
 
 
 
