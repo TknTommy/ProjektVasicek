@@ -8,8 +8,10 @@
 ## Software
 ### Front-end
 #### WebUI na PC
-
 ![Frontend_projekt](https://github.com/TknTommy/ProjektVasicek/assets/117047367/05e20204-2b3a-42bd-8eae-a51199f946b8)
+### Mobilní aplikace
+![image](https://github.com/TknTommy/ProjektVasicek/assets/117047367/466773ed-17e0-4757-9be5-5b3a3d7990b3)
+
 ## Kód
 Kód pro pro čtení a ověření platnosti
 ```
