@@ -49,6 +49,7 @@ void loop() {
       } else {
         Serial.println("RFID identifikátor nebyl nalezen v databázi.");
         digitalWrite(RED_LED, HIGH);
+        digitalWrite(GREEN_LED, LOW;
         delay(1000);
         digitalWrite(RED_LED, LOW);
       }
