@@ -1,4 +1,20 @@
 #
+<p align="center">
+    <a alt="Contributors">
+        <img src="https://img.shields.io/github/contributors/TknTommy/ProjektVasicek" /></a>
+	<a alt="Stars">
+        <img src="https://img.shields.io/github/stars/TknTommy/ProjektVasicek" /></a>
+	<a alt="Forks">
+        <img src="https://img.shields.io/github/forks/TknTommy/ProjektVasicek" /></a>
+	<a alt="Issues">
+        <img src="https://img.shields.io/github/issues/TknTommy/ProjektVasicek" /></a>
+	<a alt="License">
+        <img src="https://img.shields.io/github/license/TknTommy/ProjektVasicek" /></a>
+	<a alt="Release">
+        <img src="https://img.shields.io/github/release/TknTommy/ProjektVasicek" /></a>
+	<a alt="Code_coverage>
+        <img src="https://img.shields.io/codecov/c/github/TknTommy/ProjektVasicek" /></a>
+</p>
 
 
 ## Hardware
