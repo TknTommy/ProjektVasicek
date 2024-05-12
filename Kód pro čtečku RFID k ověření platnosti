@@ -5,7 +5,8 @@
 #define FIREBASE_HOST "https://project_name.europe-west1.firebasedatabase.app"
 #define FIREBASE_AUTH "Your_API_Key"
 
-
+#define GREEN_LED D1
+#define RED_LED D2
 
 char ssid[] = "SSID";
 char pass[] = "PASSWORD";
@@ -39,10 +40,17 @@ void loop() {
       Serial.println();
 
       shoda = checkRFID(prijateID);
-      if (shoda) {
+            if (shoda) {
         Serial.println("RFID identifikátor byl nalezen v databázi.");
+        digitalWrite(GREEN_LED, HIGH);
+        digitalWrite(RED_LED, LOW);
+        delay(1000);
+        digitalWrite(GREEN_LED, LOW);
       } else {
         Serial.println("RFID identifikátor nebyl nalezen v databázi.");
+        digitalWrite(RED_LED, HIGH);
+        delay(1000);
+        digitalWrite(RED_LED, LOW);
       }
     }
   }
