@@ -1,4 +1,4 @@
-# Hardwarové a software vybavení pro provozovatele památek pro online ověřování platnosti vstupenek
+# Hardwarové a softwarové vybavení pro ověřování vstupenek online
 <p align="center">
     <a alt="Contributors">
         <img src="https://img.shields.io/github/contributors/TknTommy/ProjektVasicek" /></a>
